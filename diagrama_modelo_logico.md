@@ -1,8 +1,8 @@
-# Diagrama do Modelo Lógico — Pizzaria
+# Diagrama do Modelo Lógico - Pizzaria
 
-> Diagrama renderizado em [Mermaid](https://mermaid.js.org/). Visualize em qualquer editor Markdown compatível (GitHub, VS Code com extensão Mermaid, etc.)
+Diagrama em Mermaid. Pode ser visualizado no GitHub, VS Code (com extensão Mermaid) ou qualquer editor Markdown compatível.
 
-## Modelo Lógico (Diagrama ER Relacional)
+## Modelo Lógico
 
 ```mermaid
 erDiagram
@@ -10,9 +10,9 @@ erDiagram
     CLIENTE ||--o{ PEDIDO : "faz"
     ENTREGADOR ||--o{ PEDIDO : "entrega"
     PIZZA ||--o{ ITEM_PEDIDO : "composta em"
-    PEDIDO ||--o{ ITEM_PEDIDO : "contém"
+    PEDIDO ||--o{ ITEM_PEDIDO : "contem"
     PIZZA ||--o{ PIZZA_INGREDIENTE : "possui"
-    INGREDIENTE ||--o{ PIZZA_INGREDIENTE : "compõe"
+    INGREDIENTE ||--o{ PIZZA_INGREDIENTE : "compoe"
 
     CATEGORIA {
         int id_categoria PK
@@ -78,23 +78,23 @@ erDiagram
 
 ## Cardinalidades
 
-| Relacionamento | Card. | Descrição |
+| Relacionamento | Cardinalidade | Descrição |
 |---|---|---|
-| Categoria → Pizza | 1 : N | Uma categoria classifica várias pizzas |
-| Cliente → Pedido | 1 : N | Um cliente faz vários pedidos |
-| Entregador → Pedido | 1 : N | Um entregador entrega vários pedidos |
-| Pizza ↔ Ingrediente | N : M | Uma pizza tem vários ingredientes e vice-versa (via `pizza_ingrediente`) |
-| Pedido ↔ Pizza | N : M | Um pedido contém várias pizzas e uma pizza aparece em vários pedidos (via `item_pedido`) |
+| Categoria - Pizza | 1 : N | Uma categoria classifica varias pizzas |
+| Cliente - Pedido | 1 : N | Um cliente faz varios pedidos |
+| Entregador - Pedido | 1 : N | Um entregador entrega varios pedidos |
+| Pizza - Ingrediente | N : M | Uma pizza tem varios ingredientes e vice-versa (via `pizza_ingrediente`) |
+| Pedido - Pizza | N : M | Um pedido contem varias pizzas e uma pizza aparece em varios pedidos (via `item_pedido`) |
 
-## Mapeamento MER → Relacional
+## Mapeamento MER -> Relacional
 
 | Entidade/Relacionamento MER | Tabela Relacional | Tipo |
 |---|---|---|
 | Entidade Categoria | `categoria` | Tabela forte |
 | Entidade Cliente | `cliente` | Tabela forte |
 | Entidade Entregador | `entregador` | Tabela forte |
-| Entidade Pizza | `pizza` | Tabela forte (FK → categoria) |
+| Entidade Pizza | `pizza` | Tabela forte (FK para categoria) |
 | Entidade Ingrediente | `ingrediente` | Tabela forte |
 | Relacionamento Pizza-Ingrediente (N:M) | `pizza_ingrediente` | Tabela associativa |
-| Entidade Pedido | `pedido` | Tabela forte (FK → cliente, entregador) |
+| Entidade Pedido | `pedido` | Tabela forte (FK para cliente e entregador) |
 | Relacionamento Pedido-Pizza (N:M) | `item_pedido` | Tabela associativa |
